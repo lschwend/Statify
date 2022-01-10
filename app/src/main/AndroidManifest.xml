@@ -12,10 +12,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Statify" >
         <activity
-            android:name=".activities.HomeActivity"
+            android:name="com.example.statify.activities.HomeActivity"
             android:exported="false" />
         <activity
-            android:name=".activities.MainActivity"
+            android:name="com.example.statify.activities.MainActivity"
             android:exported="true" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -25,25 +25,13 @@
         </activity>
         <activity
             android:name=".util.SpotifyPkceLoginActivityImpl"
-            android:exported="true"
-            android:launchMode="singleTop" >
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
 
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
 
-                <data
-                    android:host="spotify-pkce"
-                    android:scheme="statify" />
-            </intent-filter>
-        </activity>
-        <activity
-            android:name="com.spotify.sdk.android.auth.LoginActivity"
-            android:theme="@android:style/Theme.Translucent.NoTitleBar"
-            android:exported="true">
-
-            <intent-filter>
                 <data
                     android:host="spotify-pkce"
                     android:scheme="statify" />

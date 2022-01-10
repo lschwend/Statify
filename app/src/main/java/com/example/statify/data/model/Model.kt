@@ -1,4 +1,4 @@
-package com.adamratzman.spotifyandroidexample.data
+package com.example.statify.data.model
 
 import com.adamratzman.spotify.auth.SpotifyDefaultCredentialStore
 import com.example.statify.App

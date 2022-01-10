@@ -3,7 +3,7 @@ package com.example.statify
 import android.app.Application
 import android.content.Context
 import androidx.appcompat.app.AppCompatDelegate
-import com.adamratzman.spotifyandroidexample.data.Model
+import com.example.statify.data.model.Model
 
 class App : Application() {
     lateinit var model: Model

@@ -1,10 +1,10 @@
 package com.example.statify.activities
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import com.adamratzman.spotify.SpotifyScope
-import com.adamratzman.spotify.auth.pkce.startSpotifyClientPkceLoginActivity
 import com.adamratzman.spotify.getSpotifyPkceAuthorizationUrl
 import com.adamratzman.spotify.getSpotifyPkceCodeChallenge
 import com.example.statify.BuildConfig
@@ -12,13 +12,20 @@ import com.example.statify.R
 import com.example.statify.util.SpotifyPkceLoginActivityImpl
 
 class MainActivity : AppCompatActivity() {
+
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+
     }
 
     fun loginApi(view: View) {
-        this.startSpotifyClientPkceLoginActivity(SpotifyPkceLoginActivityImpl::class.java)
+        val intent = Intent(this, SpotifyPkceLoginActivityImpl::class.java)
+        startActivity(intent)
+
     }
 
 
@@ -35,5 +42,8 @@ class MainActivity : AppCompatActivity() {
             codeChallenge = codeChallenge
         )
     }
+
+
+
 
 }
