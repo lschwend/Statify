@@ -1,6 +1,7 @@
 plugins {
     id 'com.android.application'
     id 'kotlin-android'
+    id 'org.jetbrains.kotlin.plugin.serialization' version '1.4.10'
 }
 
 android {
@@ -15,11 +16,11 @@ android {
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
-
     buildTypes {
         debug {
             debuggable true
             buildConfigField "String", "SPOTIFY_CLIENT_ID", "\"9a3c59c1425c4170ac73aa4b880334fc\""
+            buildConfigField "String", "SPOTIFY_CLIENT_SECRET", "\"e4dd38089aeb493ea949c5b8fa113903\""
             buildConfigField "String", "SPOTIFY_REDIRECT_URI_AUTH", "\"statify://spotify-auth\""
             buildConfigField "String", "SPOTIFY_REDIRECT_URI_PKCE", "\"statify://spotify-pkce\""
         }
@@ -37,16 +38,22 @@ android {
     }
     kotlinOptions {
         jvmTarget = '1.8'
+        useIR = true
     }
 }
 
+
 dependencies {
+    // Coroutines
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.6.10"
+    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.3.0")
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.0'
 
     implementation 'androidx.core:core-ktx:1.7.0'
     implementation 'androidx.appcompat:appcompat:1.4.0'
     implementation 'com.google.android.material:material:1.4.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.2'
-    testImplementation 'junit:junit:4.+'
+    testImplementation 'junit:junit:'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
     implementation 'com.adamratzman:spotify-api-kotlin-android:3.8.5'

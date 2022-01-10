@@ -1,4 +1,4 @@
-package com.example.statify
+package com.example.statify.activities
 
 import android.os.Bundle
 import android.view.View
@@ -7,6 +7,9 @@ import com.adamratzman.spotify.SpotifyScope
 import com.adamratzman.spotify.auth.pkce.startSpotifyClientPkceLoginActivity
 import com.adamratzman.spotify.getSpotifyPkceAuthorizationUrl
 import com.adamratzman.spotify.getSpotifyPkceCodeChallenge
+import com.example.statify.BuildConfig
+import com.example.statify.R
+import com.example.statify.util.SpotifyPkceLoginActivityImpl
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -17,6 +20,7 @@ class MainActivity : AppCompatActivity() {
     fun loginApi(view: View) {
         this.startSpotifyClientPkceLoginActivity(SpotifyPkceLoginActivityImpl::class.java)
     }
+
 
     private fun generateUrl() : String {
         val codeVerifier = "thisisaveryrandomalphanumericcodeverifierandisgreaterthan43characters"

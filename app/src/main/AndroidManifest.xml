@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.statify" >
 
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -10,7 +12,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Statify" >
         <activity
-            android:name=".MainActivity"
+            android:name=".activities.HomeActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activities.MainActivity"
             android:exported="true" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -18,16 +23,30 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-        <activity android:name=".SpotifyPkceLoginActivityImpl"
-            android:launchMode="singleTop" android:exported="true">
+        <activity
+            android:name=".util.SpotifyPkceLoginActivityImpl"
+            android:exported="true"
+            android:launchMode="singleTop" >
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
 
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
 
-                <data android:scheme="statify" android:host="spotify-pkce" />
+                <data
+                    android:host="spotify-pkce"
+                    android:scheme="statify" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.spotify.sdk.android.auth.LoginActivity"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar"
+            android:exported="true">
+
+            <intent-filter>
+                <data
+                    android:host="spotify-pkce"
+                    android:scheme="statify" />
             </intent-filter>
         </activity>
     </application>
