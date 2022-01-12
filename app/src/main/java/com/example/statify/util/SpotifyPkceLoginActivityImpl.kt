@@ -5,7 +5,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import com.example.statify.BuildConfig
 import com.example.statify.activities.HomeActivity
-import com.example.statify.data.manager.UserCredentialsManager
+import com.example.statify.data.manager.UserCredentialsRepo
 import com.example.statify.data.model.UserCredentials
 import com.spotify.sdk.android.auth.AuthorizationClient
 import com.spotify.sdk.android.auth.AuthorizationRequest
@@ -20,7 +20,7 @@ class SpotifyPkceLoginActivityImpl() : AppCompatActivity() {
     private val REDIRECT_URI = BuildConfig.SPOTIFY_REDIRECT_URI_PKCE
 
     @Inject
-    lateinit var userCredentialsManager: UserCredentialsManager
+    lateinit var userCredentialsRepo: UserCredentialsRepo
 
     override fun onStart() {
         super.onStart()
@@ -49,8 +49,7 @@ class SpotifyPkceLoginActivityImpl() : AppCompatActivity() {
 
     private fun saveToken(intent: Intent?, response: AuthorizationResponse) {
         val userCredentials = UserCredentials(1, response.accessToken)
-        val list = listOf(userCredentials)
-        userCredentialsManager.saveUserCredentials(list)
+        userCredentialsRepo.saveUserCredentials(userCredentials)
         startActivity(intent)
     }
 

@@ -14,7 +14,10 @@ interface UserCredentialsDao {
     fun getAll(): Flowable<List<UserCredentials>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insertAll(vararg data: UserCredentials): List<Long>
+    fun insertAll(userCredentials: List<UserCredentials>)
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    fun insert(userCredentials: UserCredentials)
 
     @Query("DELETE FROM UserCredentials")
     fun clearTable()
