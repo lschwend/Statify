@@ -3,24 +3,27 @@ package com.example.statify.util
 import android.app.Activity
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
+import com.example.statify.App
 import com.example.statify.BuildConfig
 import com.example.statify.activities.HomeActivity
-import com.example.statify.data.manager.UserCredentialsRepo
 import com.example.statify.data.model.UserCredentials
+import com.example.statify.data.model.UserViewModel
+import com.example.statify.data.model.UserViewModelFactory
 import com.spotify.sdk.android.auth.AuthorizationClient
 import com.spotify.sdk.android.auth.AuthorizationRequest
 import com.spotify.sdk.android.auth.AuthorizationResponse
-import javax.inject.Inject
+import androidx.activity.viewModels
 
 internal var pkceClassBackTo: Class<out Activity>? = null
 
-class SpotifyPkceLoginActivityImpl() : AppCompatActivity() {
+class SpotifyPkceLoginActivityImpl : AppCompatActivity() {
     private val clientId = BuildConfig.SPOTIFY_CLIENT_ID
     private val REQUEST_CODE = 1337
     private val REDIRECT_URI = BuildConfig.SPOTIFY_REDIRECT_URI_PKCE
 
-    @Inject
-    lateinit var userCredentialsRepo: UserCredentialsRepo
+    private val userViewModel: UserViewModel by viewModels {
+        UserViewModelFactory((application as App).userCredentialsRepo)
+    }
 
     override fun onStart() {
         super.onStart()
@@ -49,7 +52,7 @@ class SpotifyPkceLoginActivityImpl() : AppCompatActivity() {
 
     private fun saveToken(intent: Intent?, response: AuthorizationResponse) {
         val userCredentials = UserCredentials(1, response.accessToken)
-        userCredentialsRepo.saveUserCredentials(userCredentials)
+        userViewModel.insert(userCredentials)
         startActivity(intent)
     }
 

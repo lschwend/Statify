@@ -5,7 +5,6 @@ import androidx.room.PrimaryKey
 import androidx.room.RoomWarnings
 
 @Entity
-@SuppressWarnings(RoomWarnings.CURSOR_MISMATCH)
 data class UserCredentials(
 
     @PrimaryKey(autoGenerate = true)

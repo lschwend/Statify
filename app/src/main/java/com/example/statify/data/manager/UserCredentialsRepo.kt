@@ -1,26 +1,22 @@
 package com.example.statify.data.manager
 
+import androidx.annotation.WorkerThread
 import com.example.statify.data.dao.UserCredentialsDao
-import com.example.statify.data.helper.DataBaseHelper
 import com.example.statify.data.model.UserCredentials
-import io.reactivex.Completable
-import io.reactivex.Flowable
-import javax.inject.Inject
-import javax.inject.Singleton
+import kotlinx.coroutines.flow.Flow
 
-@Singleton
-open class UserCredentialsRepo @Inject constructor(
-    private val userCredentialsDao: UserCredentialsDao
-){
+open class UserCredentialsRepo (private val userCredentialsDao: UserCredentialsDao){
 
-    fun saveUserAllCredentials(userCredentials: List<UserCredentials>) {
+    suspend fun saveUserAllCredentials(userCredentials: List<UserCredentials>) {
         userCredentialsDao.insertAll(userCredentials)
     }
 
-    fun saveUserCredentials(userCredentials: UserCredentials) {
+    @Suppress("RedundantSuspendModifier")
+    @WorkerThread
+    suspend fun saveUserCredentials(userCredentials: UserCredentials) {
         userCredentialsDao.insert(userCredentials)
     }
 
-    fun getAllUserCredentials(): Flowable<List<UserCredentials>> = userCredentialsDao.getAll()
+    fun getAllUserCredentials(): Flow<List<UserCredentials>> = userCredentialsDao.getAll()
 
 }
