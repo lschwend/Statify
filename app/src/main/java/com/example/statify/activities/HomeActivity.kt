@@ -2,22 +2,26 @@ package com.example.statify.activities
 
 import android.os.Bundle
 import android.view.View
+import androidx.activity.viewModels
+import androidx.recyclerview.widget.RecyclerView
+import com.example.statify.App
 import com.example.statify.R
+import com.example.statify.data.model.UserViewModel
+import com.example.statify.data.model.UserViewModelFactory
 
 class HomeActivity : BaseActivity() {
+
+    private val userViewModel: UserViewModel by viewModels {
+        UserViewModelFactory((application as App).userCredentialsRepo)
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-//        guardValidSpotifyApi(HomeActivity::class.java) { api ->
-//            if (!api.isTokenValid(true).isValid) throw SpotifyException.ReAuthenticationNeededException()
-//            println(api.personalization.getTopTracks(limit = 5).items.map { it.name })
-//        }
         setContentView(R.layout.activity_home)
 
+        val recyclerView = findViewById<RecyclerView>(R.id.recyclerviewHome)
+        val adapter = W
 
     }
 
-    fun requestInfo(view: View) {
-
-    }
 }
