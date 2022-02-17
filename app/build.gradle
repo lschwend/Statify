@@ -64,7 +64,10 @@ dependencies {
     implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.0'
 
     //Spotify SDK
-    implementation 'com.spotify.android:auth:<version>'
+    implementation 'com.spotify.android:auth:1.2.5'
+
+    //Spotify Web App Api (https://github.com/kaaes/spotify-web-api-android)
+    implementation 'com.github.kaaes:spotify-web-api-android:0.4.1'
 
     // room persistence library
     implementation "androidx.room:room-ktx:$rootProject.roomVersion"
@@ -83,7 +86,6 @@ dependencies {
     testImplementation 'junit:junit:'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
-    implementation 'com.adamratzman:spotify-api-kotlin-android:3.8.5'
     implementation "androidx.appcompat:appcompat:$rootProject.appCompatVersion"
     implementation "androidx.activity:activity-ktx:$rootProject.activityVersion"
 

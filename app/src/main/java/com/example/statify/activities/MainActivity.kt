@@ -4,10 +4,6 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
-import com.adamratzman.spotify.SpotifyScope
-import com.adamratzman.spotify.getSpotifyPkceAuthorizationUrl
-import com.adamratzman.spotify.getSpotifyPkceCodeChallenge
-import com.example.statify.BuildConfig
 import com.example.statify.R
 import com.example.statify.util.SpotifyPkceLoginActivityImpl
 
@@ -26,21 +22,6 @@ class MainActivity : AppCompatActivity() {
         val intent = Intent(this, SpotifyPkceLoginActivityImpl::class.java)
         startActivity(intent)
 
-    }
-
-
-    private fun generateUrl() : String {
-        val codeVerifier = "thisisaveryrandomalphanumericcodeverifierandisgreaterthan43characters"
-        val codeChallenge = getSpotifyPkceCodeChallenge(codeVerifier) // helper method
-        return getSpotifyPkceAuthorizationUrl(
-            SpotifyScope.PLAYLIST_READ_PRIVATE,
-            SpotifyScope.PLAYLIST_MODIFY_PRIVATE,
-            SpotifyScope.USER_FOLLOW_READ,
-            SpotifyScope.USER_LIBRARY_MODIFY,
-            clientId = BuildConfig.SPOTIFY_CLIENT_ID,
-            redirectUri = BuildConfig.SPOTIFY_REDIRECT_URI_PKCE,
-            codeChallenge = codeChallenge
-        )
     }
 
 

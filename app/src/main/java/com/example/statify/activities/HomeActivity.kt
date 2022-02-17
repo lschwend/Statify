@@ -20,7 +20,7 @@ class HomeActivity : BaseActivity() {
         setContentView(R.layout.activity_home)
 
         val recyclerView = findViewById<RecyclerView>(R.id.recyclerviewHome)
-        val adapter = W
+        // val adapter = W
 
     }
 
