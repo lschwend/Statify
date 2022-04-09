@@ -5,7 +5,9 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.sqlite.db.SupportSQLiteDatabase
+import com.example.statify.data.dao.TrackDao
 import com.example.statify.data.dao.UserCredentialsDao
+import com.example.statify.data.model.Tracks
 import com.example.statify.data.model.UserCredentials
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -13,13 +15,16 @@ import kotlinx.coroutines.launch
 
 @Database(
     entities = [
-        UserCredentials::class
+        UserCredentials::class,
+        Tracks::class
     ],
     version = 1
 )
 abstract class DataBaseHelper : RoomDatabase(){
 
     abstract fun userCredentialsDao(): UserCredentialsDao
+
+    abstract fun tracksDao(): TrackDao
 
     companion object {
 
@@ -61,7 +66,7 @@ abstract class DataBaseHelper : RoomDatabase(){
                 // comment out the following line.
                 INSTANCE?.let { database ->
                     scope.launch(Dispatchers.IO) {
-                        populateDatabase(database.userCredentialsDao())
+                        populateDatabase(database.userCredentialsDao(), database.tracksDao())
                     }
                 }
             }
@@ -71,7 +76,7 @@ abstract class DataBaseHelper : RoomDatabase(){
          * Populate the database in a new coroutine.
          * If you want to start with more words, just add them.
          */
-        suspend fun populateDatabase(userCredentialsDao: UserCredentialsDao) {
+        suspend fun populateDatabase(userCredentialsDao: UserCredentialsDao, trackDao: TrackDao) {
 
         }
     }

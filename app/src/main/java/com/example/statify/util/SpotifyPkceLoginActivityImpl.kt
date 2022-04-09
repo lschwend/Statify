@@ -14,12 +14,11 @@ import com.spotify.sdk.android.auth.AuthorizationRequest
 import com.spotify.sdk.android.auth.AuthorizationResponse
 import androidx.activity.viewModels
 
-internal var pkceClassBackTo: Class<out Activity>? = null
-
 class SpotifyPkceLoginActivityImpl : AppCompatActivity() {
     private val clientId = BuildConfig.SPOTIFY_CLIENT_ID
     private val REQUEST_CODE = 1337
     private val REDIRECT_URI = BuildConfig.SPOTIFY_REDIRECT_URI_PKCE
+    private val SCOPES = "user-read-recently-played,user-library-modify,user-library-read,playlist-modify-public,playlist-modify-private,user-read-email,user-read-private,playlist-read-private,playlist-read-collaborative"
 
     private val userViewModel: UserViewModel by viewModels {
         UserViewModelFactory((application as App).userCredentialsRepo)
@@ -29,8 +28,7 @@ class SpotifyPkceLoginActivityImpl : AppCompatActivity() {
         super.onStart()
         val builder =
             AuthorizationRequest.Builder(clientId, AuthorizationResponse.Type.TOKEN, REDIRECT_URI)
-
-        builder.setScopes(arrayOf("streaming"))
+        builder.setScopes(arrayOf(SCOPES))
         val request = builder.build()
 
         AuthorizationClient.openLoginActivity(this, REQUEST_CODE, request)

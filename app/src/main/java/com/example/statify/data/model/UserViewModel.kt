@@ -1,16 +1,15 @@
 package com.example.statify.data.model
 
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.asLiveData
 import androidx.lifecycle.viewModelScope
 import com.example.statify.data.manager.UserCredentialsRepo
+import io.reactivex.Flowable
 import kotlinx.coroutines.launch
 
 class UserViewModel (private val repository: UserCredentialsRepo) : ViewModel() {
 
-    val credentials: LiveData<List<UserCredentials>> = repository.getAllUserCredentials().asLiveData()
+    val credentials: Flowable<List<UserCredentials>> = repository.getAllUserCredentials()
 
     fun insert(credentials: UserCredentials) = viewModelScope.launch {
         repository.saveUserCredentials(credentials)
