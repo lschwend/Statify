@@ -14,7 +14,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Statify">
         <activity
-            android:name=".activities.HomeActivity"
+            android:name=".activities.TrackActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activities.ArtistsActivity"
             android:exported="false" />
         <activity
             android:name=".activities.MainActivity"
@@ -27,17 +30,7 @@
         </activity>
         <activity
             android:name=".util.SpotifyPkceLoginActivityImpl"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.VIEW" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-                <category android:name="android.intent.category.BROWSABLE" />
-
-                <data
-                    android:host="spotify-pkce"
-                    android:scheme="statify" />
-            </intent-filter>
+            android:exported="false">
         </activity>
     </application>
 

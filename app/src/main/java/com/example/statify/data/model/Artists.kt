@@ -4,19 +4,17 @@ import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
-
 @Entity
-data class Tracks(
+data class Artists (
 
     @PrimaryKey(autoGenerate = true)
-    var trackId: Long = 0,
+    var artistId: Long = 0,
 
-    var id: String,
-
-    @ColumnInfo(name = "track_name")
+    @ColumnInfo(name = "artist_name")
     var name: String,
 
-    var type: String,
+    var uri: String,
 
-    var artists: List<Artists>,
+    var images: List<Images>
+
 )

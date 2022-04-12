@@ -4,11 +4,15 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import androidx.room.TypeConverters
 import androidx.sqlite.db.SupportSQLiteDatabase
+import com.example.statify.data.dao.ArtistDao
 import com.example.statify.data.dao.TrackDao
 import com.example.statify.data.dao.UserCredentialsDao
+import com.example.statify.data.model.Artists
 import com.example.statify.data.model.Tracks
 import com.example.statify.data.model.UserCredentials
+import com.example.statify.util.Converters
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -16,15 +20,19 @@ import kotlinx.coroutines.launch
 @Database(
     entities = [
         UserCredentials::class,
-        Tracks::class
+        Tracks::class,
+        Artists::class
     ],
     version = 1
 )
+@TypeConverters(Converters::class)
 abstract class DataBaseHelper : RoomDatabase(){
 
     abstract fun userCredentialsDao(): UserCredentialsDao
 
     abstract fun tracksDao(): TrackDao
+
+    abstract fun artistsDao(): ArtistDao
 
     companion object {
 
@@ -76,7 +84,7 @@ abstract class DataBaseHelper : RoomDatabase(){
          * Populate the database in a new coroutine.
          * If you want to start with more words, just add them.
          */
-        suspend fun populateDatabase(userCredentialsDao: UserCredentialsDao, trackDao: TrackDao) {
+        fun populateDatabase(userCredentialsDao: UserCredentialsDao, trackDao: TrackDao) {
 
         }
     }

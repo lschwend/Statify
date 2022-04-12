@@ -1,11 +1,12 @@
 package com.example.statify.api
 
 import android.content.Context
+import java.io.Serializable
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
-class ApiClient() {
+class ApiClient {
 
     private lateinit var api: ApiService
 

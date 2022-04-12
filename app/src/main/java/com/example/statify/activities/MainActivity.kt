@@ -21,7 +21,6 @@ class MainActivity : AppCompatActivity() {
     fun loginApi(view: View) {
         val intent = Intent(this, SpotifyPkceLoginActivityImpl::class.java)
         startActivity(intent)
-
     }
 
 

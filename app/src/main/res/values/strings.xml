@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">Statify</string>
+    <string name="fav_artists">Your Favorite Artists</string>
+    <string name="fav_tracks">Your Favorite Tracks</string>
+    <string name="get_artists">Get Artists</string>
+    <string name="log_in">Log In</string>
 </resources>

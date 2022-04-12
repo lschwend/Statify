@@ -23,6 +23,10 @@ android {
                 arguments = ["room.schemaLocation": "$projectDir/schemas".toString()]
             }
         }
+        manifestPlaceholders = [
+                'appAuthRedirectScheme': 'statify'
+        ]
+
     }
     buildTypes {
         debug {
@@ -68,10 +72,14 @@ dependencies {
 
     //Spotify Web App Api (https://github.com/kaaes/spotify-web-api-android)
     implementation 'com.github.kaaes:spotify-web-api-android:0.4.1'
+    implementation 'com.github.pghazal.spotify-web-api-android:api-auth:1.0.2'
 
     //retrofit
     implementation 'com.squareup.retrofit2:retrofit:2.9.0'
     implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
+
+    //picasso
+    implementation 'com.squareup.picasso:picasso:2.71828'
 
     // room persistence library
     implementation "androidx.room:room-ktx:$rootProject.roomVersion"
